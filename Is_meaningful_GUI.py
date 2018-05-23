@@ -40,7 +40,7 @@ status=0
 
 text=StringVar()
 
-text.set("%d：  " %(index)+data.iloc[index][1])
+text.set(data.iloc[index][1]+"\n\n%d" %(index))
 
 def change(flag):
     
@@ -51,7 +51,7 @@ def change(flag):
     
     if status==1:
         index+=1
-        text.set(data.iloc[index][1])
+        text.set(data.iloc[index][1]+"\n\n%d" %(index))
         status=0
 
 
