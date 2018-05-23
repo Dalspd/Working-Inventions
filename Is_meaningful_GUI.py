@@ -17,9 +17,7 @@ column=[]
 
 count=[]
 
-index=0
-
-
+index=37
 
 
 # 创建tkinter应用程序窗口
@@ -42,17 +40,17 @@ status=0
 
 text=StringVar()
 
-text.set(data.iloc[index][1])
+text.set("%d：  " %(index)+data.iloc[index][1])
 
 def change(flag):
     
     global column,index,status
     
     column.append(flag)
+    count.append(index)
     
     if status==1:
         index+=1
-        count.append(index)
         text.set(data.iloc[index][1])
         status=0
 
@@ -99,7 +97,7 @@ def saveButton():
     print(column)
     
     dataframe=pd.DataFrame({'index':count,'1-500':column})
-    dataframe.to_csv("result %d .csv" %(index),index=False,sep=',')
+    dataframe.to_csv("result %d .csv" %(index-1),index=False,sep=',')
 
 svButton=tkinter.Button(root,text='SAVE',command=saveButton)
 
