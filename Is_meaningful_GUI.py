@@ -6,12 +6,16 @@ import tkinter.messagebox
 
 from tkinter import StringVar
 
+import tkinter.font as tkFont
+
 import pandas as pd
 
 data=pd.read_csv('word_list.csv')
 
 
 column=[]
+
+count=[]
 
 index=0
 
@@ -48,6 +52,7 @@ def change(flag):
     
     if status==1:
         index+=1
+        count.append(index)
         text.set(data.iloc[index][1])
         status=0
 
@@ -61,7 +66,7 @@ def yesButton():
 
 btnPre = tkinter.Button(root, text='YES', command=yesButton)
 
-btnPre.place(x=100, y=20, width=80, height=30)
+btnPre.place(x=100, y=600, width=80, height=30)
 
 
 
@@ -74,7 +79,7 @@ def noButton():
 
 btnNext = tkinter.Button(root, text='NO', command=noButton)
 
-btnNext.place(x=230, y=20, width=80, height=30)
+btnNext.place(x=230, y=600, width=80, height=30)
 
 
 def saveButton():
@@ -83,18 +88,19 @@ def saveButton():
     
     print(column)
     
-    dataframe=pd.DataFrame({'Is_meaningful(y for yes,n for no)':column})
-    dataframe.to_csv("result.csv",index=False,sep=',')
+    dataframe=pd.DataFrame({'index':count,'1-500':column})
+    dataframe.to_csv("result %d .csv" %(index),index=False,sep=',')
 
 svButton=tkinter.Button(root,text='SAVE',command=saveButton)
 
-svButton.place(x=175,y=600,width=80,height=30)
+svButton.place(x=175,y=20,width=80,height=30)
 
 
 # 用来显示词汇的Label组件
 
-textLabel = tkinter.Label(root,textvariable=text)
+ft=tkFont.Font(size=30)
 
+textLabel = tkinter.Label(root,textvariable=text,font=ft)
 
 textLabel.place(x=10, y=50, width=400, height=300)
 
