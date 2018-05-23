@@ -82,6 +82,16 @@ btnNext = tkinter.Button(root, text='NO', command=noButton)
 btnNext.place(x=230, y=600, width=80, height=30)
 
 
+def unButton():
+    global status
+    status=1
+    change('')
+
+btnNext = tkinter.Button(root, text='unc', command=unButton)
+
+btnNext.place(x=360, y=600, width=80, height=30)
+
+
 def saveButton():
     
     global column
